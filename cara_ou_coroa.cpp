@@ -20,17 +20,18 @@ int main(){
     if(jogo == 0){
         moeda1 = CARA;
         cout << "Moeda: CARA" << endl;
-    } else{
+    } else if(jogo == 1){
         moeda1 = COROA;
         cout << "Moeda: COROA" << endl; 
     }
-
+    
+    srand(time( 0 ));
     jogo = jogar();
 
     if(jogo == 0){
         moeda2 = CARA;
         cout << "Moeda: CARA" << endl;
-    } else{
+    } else if(jogo == 1){
         moeda2 = COROA;
         cout << "Moeda: COROA" << endl; 
     }
@@ -40,7 +41,6 @@ int main(){
     } else{
         cout << "Jogador perdeu!" << endl;
     }
-
     return 0;
 }
 
