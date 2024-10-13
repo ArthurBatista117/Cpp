@@ -1,53 +1,42 @@
 #include<iostream>
-#include<locale>
 #include<cstdlib>
 #include<ctime>
 
 using namespace std;
 
-int jogar(void);
+enum Status {CARA, COROA};
+int jogar(Status);
 
 int main(){
-    setlocale(LC_ALL, "Portuguese");
-    enum Status {CARA, COROA};
-    Status moeda1;
-    Status moeda2;
-    int jogo;
+    Status coin;
+    int jogo[1];
     
-    srand(time( 0 ));
-    jogo = jogar();
-
-    if(jogo == 0){
-        moeda1 = CARA;
-        cout << "Moeda: CARA" << endl;
-    } else if(jogo == 1){
-        moeda1 = COROA;
-        cout << "Moeda: COROA" << endl; 
-    }
-    
-    srand(time( 0 ));
-    jogo = jogar();
-
-    if(jogo == 0){
-        moeda2 = CARA;
-        cout << "Moeda: CARA" << endl;
-    } else if(jogo == 1){
-        moeda2 = COROA;
-        cout << "Moeda: COROA" << endl; 
+    for (int i = 0; i < 2; i++){
+        jogo[i] = jogar(coin);
     }
 
-    if(moeda1 == moeda2){
-        cout << "Jogador ganhou!" << endl;
+    if(jogo[0] == jogo[1]){
+        cout << "Jogador: GANHA" << endl;
     } else{
-        cout << "Jogador perdeu!" << endl;
+        cout << "Jogador: PERDE" << endl;
     }
+
     return 0;
 }
 
-int jogar(void){
+int jogar(Status moeda){
     int jogo;
 
-    jogo = 1 + rand() % 2;
+    srand(time( 0 ));
+    jogo = rand() % 2;
 
-    return jogo;
+    if(jogo == 0){
+        moeda = CARA;
+        cout << "Jogada: CARA" << endl;
+    } else{
+        moeda = COROA;
+        cout << "Jogada: COROA" << endl;
+    }
+    
+    return moeda;
 }
